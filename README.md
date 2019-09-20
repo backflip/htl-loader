@@ -8,7 +8,7 @@ Webpack loader for HTL/Sightly templates. Based on [`@adobe/htlengine`](https://
 
 ## Usage
 
-See [](./test).
+See [./test](./test).
 
 1. Add loader to `webpack.config.js`:
 
@@ -19,7 +19,7 @@ See [](./test).
       {
         test: /\.htl$/,
         use: {
-          loader: "htl-loader,
+          loader: "htl-loader",
           options: {
             globalName: "htl"
           }
