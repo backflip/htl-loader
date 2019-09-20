@@ -1,0 +1,27 @@
+{
+  "name": "htl-loader",
+  "version": "0.0.1",
+  "description": "Webpack laoder for HTL/Sightly templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "webpack --config test/webpack.config.js"
+  },
+  "keywords": [
+    "htl",
+    "sightly"
+  ],
+  "author": "Thomas Jaggi @backflip",
+  "repository": "github:backflip/htl-loader",
+  "license": "MIT",
+  "devDependencies": {
+    "@adobe/htlengine": "^3.2.2",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "peerDependencies": {
+    "@adobe/htlengine": "^3.2.2"
+  },
+  "dependencies": {
+    "loader-utils": "^1.2.3"
+  }
+}
