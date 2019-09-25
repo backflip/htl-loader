@@ -12,15 +12,9 @@ module.exports = {
       {
         test: /\.htl$/,
         use: {
-          loader: path.resolve("./index.js"),
-          options: {
-            globalName: "htl"
-          }
+          loader: path.resolve("./index.js")
         }
       }
     ]
-  },
-  node: {
-    fs: "empty"
   }
 };

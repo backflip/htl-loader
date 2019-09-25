@@ -12,7 +12,8 @@ module.exports = async function(source) {
       model: "default",
       useDir: null,
       transformSource: null,
-      transformCompiled: null
+      transformCompiled: null,
+      data: {}
     },
     options,
     query
@@ -54,7 +55,7 @@ module.exports = async function(source) {
 
   // Run
   const template = eval(compiledCode);
-  const html = await template({});
+  const html = await template(settings.data);
 
   return `module.exports = \`${html}\``;
 };

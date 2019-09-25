@@ -1,9 +1,3 @@
-import template from "./template.htl";
+import html from "./template.htl?{\"data\":{\"title\":\"Hello\"}}";
 
-(async () => {
-  const html = await template({
-    title: "HTL"
-  });
-
-  document.body.insertAdjacentHTML("beforeend", html);
-})();
+document.body.insertAdjacentHTML("beforeend", html);
