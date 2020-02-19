@@ -3,6 +3,7 @@ const path = require('path');
 const assert = require('assert');
 const fse = require('fs-extra');
 const webpack = require('webpack');
+const { Runtime } = require('@adobe/htlengine');
 
 async function createTestRoot() {
   const dir = path.resolve(__dirname, 'tmp', crypto.randomBytes(16)
@@ -77,5 +78,19 @@ describe('Build Tests', () => {
     });
     const html = require(path.resolve(testRoot, 'bundle.js')).default;
     assert.equal(html.trim(), '<h1>Hello</h1>');
+  });
+
+  it('Allows to exclude runtime', async () => {
+    await compile(testRoot, 'simple', {
+      includeRuntime: false
+    });
+    const template = require(path.resolve(testRoot, 'bundle.js')).default;
+
+    const runtime = new Runtime()
+      .setGlobal({
+        title: 'Hello',
+      });
+    const html = await template(runtime);
+    assert.equal(html, '<h1>Hello</h1>');
   });
 });

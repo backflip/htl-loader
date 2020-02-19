@@ -13,6 +13,7 @@ module.exports = async function(source) {
       useDir: null,
       transformSource: null,
       transformCompiled: null,
+      includeRuntime: true,
       data: {}
     },
     options,
@@ -29,7 +30,7 @@ module.exports = async function(source) {
   // Set up compiler
   const compiler = new Compiler()
     .withDirectory(this.rootContext)
-    .includeRuntime(true)
+    .includeRuntime(settings.includeRuntime)
     .withRuntimeGlobalName(settings.globalName);
 
   // Compile
@@ -54,9 +55,13 @@ module.exports = async function(source) {
     compiledCode = settings.transformCompiled(compiledCode, settings);
   }
 
-  // Run
-  const template = eval(compiledCode);
-  const html = await template(settings.data);
+  if (settings.includeRuntime) {
+    // Run
+    const template = eval(compiledCode);
+    const html = await template(settings.data);
 
-  return `module.exports = \`${html}\``;
+    return `module.exports = \`${html}\``;
+  } else {
+    return compiledCode;
+  }
 };
