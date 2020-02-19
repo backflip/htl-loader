@@ -28,11 +28,12 @@ module.exports = async function(source) {
 
   // Set up compiler
   const compiler = new Compiler()
+    .withDirectory(this.rootContext)
     .includeRuntime(true)
     .withRuntimeGlobalName(settings.globalName);
 
   // Compile
-  let compiledCode = await compiler.compileToString(input);
+  let compiledCode = await compiler.compileToString(input, this.context);
 
   // Specify location for data files from `use` directives
   if (settings.useDir) {

@@ -68,4 +68,14 @@ describe('Build Tests', () => {
     assert.equal(html, '<h1>Hello, world.</h1>');
   });
 
+  it('Compiles and evaluates htl using templates.', async () => {
+    await compile(testRoot, 'templates', {
+      globalName: 'properties',
+      data: {
+        title: 'Hello'
+      }
+    });
+    const html = require(path.resolve(testRoot, 'bundle.js')).default;
+    assert.equal(html.trim(), '<h1>Hello</h1>');
+  });
 });
