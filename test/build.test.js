@@ -93,4 +93,22 @@ describe('Build Tests', () => {
     const html = await template(runtime);
     assert.equal(html, '<h1>Hello</h1>');
   });
+
+  it('Supports runtime vars', async () => {
+    await compile(testRoot, 'runtimevars', {
+      includeRuntime: false,
+      runtimeVars: ['wcmmode'],
+    });
+    const template = require(path.resolve(testRoot, 'bundle.js')).default;
+
+    const runtime = new Runtime()
+      .setGlobal({
+        title: 'Hello',
+        wcmmode: {
+          edit: true,
+        }
+      });
+    const html = await template(runtime);
+    assert.equal(html.trim(), '<h1>Hello</h1>\n<div>click here to edit</div>');
+  });
 });

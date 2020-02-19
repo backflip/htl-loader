@@ -14,6 +14,7 @@ module.exports = async function(source) {
       transformSource: null,
       transformCompiled: null,
       includeRuntime: true,
+      runtimeVars: [],
       data: {}
     },
     options,
@@ -32,6 +33,10 @@ module.exports = async function(source) {
     .withDirectory(this.rootContext)
     .includeRuntime(settings.includeRuntime)
     .withRuntimeGlobalName(settings.globalName);
+
+  settings.runtimeVars.forEach((name) => {
+      compiler.withRuntimeVar(name);
+  });
 
   // Compile
   let compiledCode = await compiler.compileToString(input, this.context);

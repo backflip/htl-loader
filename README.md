@@ -51,6 +51,7 @@ document.body.insertAdjacentHTML("beforeend", html);
 | `transformCompiled` | `null` | Function invoked after compiling the htl. |
 | `data` | `{}` | Runtime global. |
 | `includeRuntime` | `true` | Include runtime and evaluate template during compilation. |
+| `runtimeVars` | `[]` | Add (global) runtime variable names during compilation. |
 
 ### Example
 
