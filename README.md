@@ -8,7 +8,7 @@ Webpack loader for HTL/Sightly templates. Based on [`@adobe/htlengine`](https://
 
 ## Usage
 
-See [./test](./test).
+See [./example](./example).
 
 1. Add loader to `webpack.config.js`:
 
@@ -40,6 +40,18 @@ document.body.insertAdjacentHTML("beforeend", html);
 ```
 
 ## Advanced
+
+### Configuration options:
+
+| Name | Default | Description |
+|:-----|:---|:------------|
+| `globalName` | `htl` | Name of the runtime global variable. |
+| `useDir` | `null` | Root directory for use-classed passed to the runtime. |
+| `transformSource` | `null` | Function invoked before compiling the htl. |
+| `transformCompiled` | `null` | Function invoked after compiling the htl. |
+| `data` | `{}` | Runtime global. |
+
+### Example
 
 ```js
 {
