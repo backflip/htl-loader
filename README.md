@@ -52,6 +52,7 @@ document.body.insertAdjacentHTML("beforeend", html);
 | `data` | `{}` | Runtime global. |
 | `includeRuntime` | `true` | Include runtime and evaluate template during compilation. |
 | `runtimeVars` | `[]` | Add (global) runtime variable names during compilation. |
+| `moduleImportGenerator` | `null` | Use custom module import generator. |
 
 ### Example
 

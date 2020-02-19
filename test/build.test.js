@@ -111,4 +111,28 @@ describe('Build Tests', () => {
     const html = await template(runtime);
     assert.equal(html.trim(), '<h1>Hello</h1>\n<div>click here to edit</div>');
   });
+
+  it('Can set custom module import generator', async () => {
+    await compile(testRoot, 'useclasses', {
+      includeRuntime: false,
+      // very simple import generator. a better usecase would be to defer loading the module with
+      // custom function, e.g. one that automatically injects some data into the use-class.
+      moduleImportGenerator: (baseDir, varName, id) => {
+        return `const ${varName} = require('./${id}');`;
+      }
+    });
+    const template = require(path.resolve(testRoot, 'bundle.js')).default;
+
+    const runtime = new Runtime()
+      .setGlobal({
+        properties: {
+          title: 'Jupiter',
+          radius: 3000,
+        }
+      });
+    const html = await template(runtime);
+    assert.equal(html.trim(), '<h1>Jupiter</h1>\n    Surface Area: 113097336');
+  });
+
+
 });

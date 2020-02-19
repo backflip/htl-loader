@@ -15,6 +15,7 @@ module.exports = async function(source) {
       transformCompiled: null,
       includeRuntime: true,
       runtimeVars: [],
+      moduleImportGenerator: null,
       data: {}
     },
     options,
@@ -37,6 +38,9 @@ module.exports = async function(source) {
   settings.runtimeVars.forEach((name) => {
       compiler.withRuntimeVar(name);
   });
+  if (settings.moduleImportGenerator) {
+    compiler.withModuleImportGenerator(settings.moduleImportGenerator);
+  }
 
   // Compile
   let compiledCode = await compiler.compileToString(input, this.context);
