@@ -4,7 +4,7 @@ Webpack loader for HTL/Sightly templates. Based on [`@adobe/htlengine`](https://
 
 ## Installation
 
-`npm install --save-dev htl-loader @adobe/htlengine`
+`npm install --save htl-loader @adobe/htlengine`
 
 ## Usage
 
@@ -41,7 +41,7 @@ document.body.insertAdjacentHTML("beforeend", html);
 
 ## Advanced
 
-### Configuration options:
+### Configuration options
 
 | Name                                                      | Default | Description                                               |
 | :-------------------------------------------------------- | :------ | :-------------------------------------------------------- |
@@ -102,6 +102,10 @@ document.body.insertAdjacentHTML("beforeend", html);
   }
 }
 ```
+
+## Contributors
+
+- [tripodsan](https://github.com/tripodsan)
 
 ## License
 
