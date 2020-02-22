@@ -20,7 +20,7 @@ See [./example](./example).
         test: /\.htl$/,
         use: ["htl-loader"]
       }
-    ]
+    ];
   }
 }
 ```
@@ -34,7 +34,7 @@ See [./example](./example).
 3. Import and run compiled template in your JavaScript:
 
 ```js
-import html from "./template.htl?{\"data\":{\"title\":\"Hello\"}}";
+import html from './template.htl?{"data":{"title":"Hello"}}';
 
 document.body.insertAdjacentHTML("beforeend", html);
 ```
@@ -43,16 +43,16 @@ document.body.insertAdjacentHTML("beforeend", html);
 
 ### Configuration options:
 
-| Name | Default | Description |
-|:-----|:---|:------------|
-| `globalName` | `htl` | Name of the runtime global variable. |
-| `useDir` | `null` | Root directory for use-classed passed to the runtime. |
-| `transformSource` | `null` | Function invoked before compiling the htl. |
-| `transformCompiled` | `null` | Function invoked after compiling the htl. |
-| `data` | `{}` | Runtime global. |
-| `includeRuntime` | `true` | Include runtime and evaluate template during compilation. |
-| `runtimeVars` | `[]` | Add (global) runtime variable names during compilation. |
-| `moduleImportGenerator` | `null` | Use custom module import generator. |
+| Name                                                      | Default | Description                                               |
+| :-------------------------------------------------------- | :------ | :-------------------------------------------------------- |
+| [`globalName`](./test/build.test.js#L72-L81)              | `htl`   | Name of the runtime global variable.                      |
+| `useDir`                                                  | `null`  | Root directory for use-classed passed to the runtime.     |
+| `transformSource`                                         | `null`  | Function invoked before compiling the htl.                |
+| `transformCompiled`                                       | `null`  | Function invoked after compiling the htl.                 |
+| [`data`](./test/build.test.js#L56-L64)                    | `{}`    | Runtime global.                                           |
+| [`includeRuntime`](./test/build.test.js#L83-L95)          | `true`  | Include runtime and evaluate template during compilation. |
+| [`runtimeVars`](./test/build.test.js#L97-L113)            | `[]`    | Add (global) runtime variable names during compilation.   |
+| [`moduleImportGenerator`](./test/build.test.js#L115-L135) | `null`  | Use custom module import generator.                       |
 
 ### Example
 
@@ -70,7 +70,10 @@ document.body.insertAdjacentHTML("beforeend", html);
               transformSource: source => {
                 const output = source
                   .replace(/data-sly-use\.templates?="(.*?)"/g, "")
-                  .replace(/<sly[^>]+data-sly-call=(["']).*?\1.*?><\/sly>/g, "");
+                  .replace(
+                    /<sly[^>]+data-sly-call=(["']).*?\1.*?><\/sly>/g,
+                    ""
+                  );
 
                 return output;
               },
@@ -95,7 +98,7 @@ document.body.insertAdjacentHTML("beforeend", html);
           }
         ]
       }
-    ]
+    ];
   }
 }
 ```
