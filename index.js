@@ -13,6 +13,9 @@ module.exports = async function(source) {
       useDir: null,
       transformSource: null,
       transformCompiled: null,
+      includeRuntime: true,
+      runtimeVars: [],
+      moduleImportGenerator: null,
       data: {}
     },
     options,
@@ -28,11 +31,19 @@ module.exports = async function(source) {
 
   // Set up compiler
   const compiler = new Compiler()
-    .includeRuntime(true)
+    .withDirectory(this.rootContext)
+    .includeRuntime(settings.includeRuntime)
     .withRuntimeGlobalName(settings.globalName);
 
+  settings.runtimeVars.forEach((name) => {
+      compiler.withRuntimeVar(name);
+  });
+  if (settings.moduleImportGenerator) {
+    compiler.withModuleImportGenerator(settings.moduleImportGenerator);
+  }
+
   // Compile
-  let compiledCode = await compiler.compileToString(input);
+  let compiledCode = await compiler.compileToString(input, this.context);
 
   // Specify location for data files from `use` directives
   if (settings.useDir) {
@@ -53,9 +64,13 @@ module.exports = async function(source) {
     compiledCode = settings.transformCompiled(compiledCode, settings);
   }
 
-  // Run
-  const template = eval(compiledCode);
-  const html = await template(settings.data);
+  if (settings.includeRuntime) {
+    // Run
+    const template = eval(compiledCode);
+    const html = await template(settings.data);
 
-  return `module.exports = \`${html}\``;
+    return `module.exports = \`${html}\``;
+  } else {
+    return compiledCode;
+  }
 };
