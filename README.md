@@ -45,14 +45,14 @@ document.body.insertAdjacentHTML("beforeend", html);
 
 | Name                                                      | Default | Description                                               |
 | :-------------------------------------------------------- | :------ | :-------------------------------------------------------- |
-| [`globalName`](./test/build.test.js#L72-L81)              | `htl`   | Name of the runtime global variable.                      |
+| [`globalName`](./test/build.test.js#L77-L86)              | `htl`   | Name of the runtime global variable.                      |
 | `useDir`                                                  | `null`  | Root directory for use-classed passed to the runtime.     |
 | `transformSource`                                         | `null`  | Function invoked before compiling the htl.                |
 | `transformCompiled`                                       | `null`  | Function invoked after compiling the htl.                 |
-| [`data`](./test/build.test.js#L56-L64)                    | `{}`    | Runtime global.                                           |
-| [`includeRuntime`](./test/build.test.js#L83-L95)          | `true`  | Include runtime and evaluate template during compilation. |
-| [`runtimeVars`](./test/build.test.js#L97-L113)            | `[]`    | Add (global) runtime variable names during compilation.   |
-| [`moduleImportGenerator`](./test/build.test.js#L115-L135) | `null`  | Use custom module import generator.                       |
+| [`data`](./test/build.test.js#L61-L69)                    | `{}`    | Runtime global.                                           |
+| [`includeRuntime`](./test/build.test.js#L88-L99)          | `true`  | Include runtime and evaluate template during compilation. |
+| [`runtimeVars`](./test/build.test.js#L101-L116)           | `[]`    | Add (global) runtime variable names during compilation.   |
+| [`moduleImportGenerator`](./test/build.test.js#L118-L137) | `null`  | Use custom module import generator.                       |
 
 ### Example
 
