@@ -5,7 +5,7 @@ module.exports = class MyUseClass {
       title: properties.title,
       get area() {
         return Math.round(4 * Math.PI * r * r);
-      },
+      }
     };
   }
 };

@@ -35,8 +35,8 @@ module.exports = async function(source) {
     .includeRuntime(settings.includeRuntime)
     .withRuntimeGlobalName(settings.globalName);
 
-  settings.runtimeVars.forEach((name) => {
-      compiler.withRuntimeVar(name);
+  settings.runtimeVars.forEach(name => {
+    compiler.withRuntimeVar(name);
   });
   if (settings.moduleImportGenerator) {
     compiler.withModuleImportGenerator(settings.moduleImportGenerator);
