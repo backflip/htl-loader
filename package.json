@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha test/*.test.js",
     "example": "webpack --config example/webpack.config.js",
-    "format": "prettier --write \"**/*.js\""
+    "format": "prettier --write \"**/*.js\"",
+    "publish": "npx np"
   },
   "keywords": [
     "htl",
