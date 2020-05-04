@@ -50,9 +50,10 @@ document.body.insertAdjacentHTML("beforeend", html);
 | `transformSource`                                         | `null`  | Function invoked before compiling the htl.                |
 | `transformCompiled`                                       | `null`  | Function invoked after compiling the htl.                 |
 | [`data`](./test/build.test.js#L61-L69)                    | `{}`    | Runtime global.                                           |
-| [`includeRuntime`](./test/build.test.js#L88-L99)          | `true`  | Include runtime and evaluate template during compilation. |
-| [`runtimeVars`](./test/build.test.js#L101-L116)           | `[]`    | Add (global) runtime variable names during compilation.   |
-| [`moduleImportGenerator`](./test/build.test.js#L118-L137) | `null`  | Use custom module import generator.                       |
+| [`includeRuntime`](./test/build.test.js#L96-L107)         | `true`  | Include runtime and evaluate template during compilation. |
+| [`runtimeVars`](./test/build.test.js#L109-L124)           | `[]`    | Add (global) runtime variable names during compilation.   |
+| [`moduleImportGenerator`](./test/build.test.js#L126-L145) | `null`  | Use custom module import generator.                       |
+| [`templateLodaer`](./test/build.test.js#L77-L94)          | `null`  | Use custom template loader.                               |
 
 ### Example
 

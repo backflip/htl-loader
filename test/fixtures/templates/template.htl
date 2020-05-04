@@ -1,1 +1,2 @@
 <sly data-sly-use.headingTemplate="heading.html" data-sly-call="${headingTemplate.heading @ title = properties.title}"/>
+<sly data-sly-use.footerTemplate="project1/footer.html" data-sly-call="${footerTemplate.footer @ text = properties.text}"/>
