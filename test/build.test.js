@@ -3,7 +3,7 @@ const path = require("path");
 const assert = require("assert");
 const fse = require("fs-extra");
 const webpack = require("webpack");
-const { Runtime } = require("@adobe/htlengine");
+const { Runtime, createTemplateLoader } = require("@adobe/htlengine");
 
 async function createTestRoot() {
   const dir = path.resolve(
@@ -75,14 +75,22 @@ describe("Build Tests", () => {
   });
 
   it("Compiles and evaluates htl using templates.", async () => {
+    // use special template loader that also respects 2nd project root
+    const loader = createTemplateLoader([
+      path.resolve(__dirname, 'fixtures', 'secondary_project'),
+      path.resolve(__dirname, 'fixtures'),
+    ])
+
     await compile(testRoot, "templates", {
       globalName: "properties",
+      templateLoader: loader,
       data: {
-        title: "Hello"
+        title: "Hello",
+        text: "Footer Text"
       }
     });
     const html = require(path.resolve(testRoot, "bundle.js")).default;
-    assert.equal(html.trim(), "<h1>Hello</h1>");
+    assert.equal(html.trim(), "<h1>Hello</h1>\n\n\n    <p>Footer Text</p>");
   });
 
   it("Allows to exclude runtime", async () => {

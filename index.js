@@ -16,6 +16,7 @@ module.exports = async function(source) {
       includeRuntime: true,
       runtimeVars: [],
       moduleImportGenerator: null,
+      templateLoader: null,
       data: {}
     },
     options,
@@ -40,6 +41,9 @@ module.exports = async function(source) {
   });
   if (settings.moduleImportGenerator) {
     compiler.withModuleImportGenerator(settings.moduleImportGenerator);
+  }
+  if (settings.templateLoader) {
+    compiler.withTemplateLoader(settings.templateLoader);
   }
 
   // Compile
