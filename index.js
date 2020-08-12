@@ -17,6 +17,7 @@ module.exports = async function(source) {
       runtimeVars: [],
       moduleImportGenerator: null,
       templateLoader: null,
+      scriptResolver: null,
       data: {}
     },
     options,
@@ -44,6 +45,9 @@ module.exports = async function(source) {
   }
   if (settings.templateLoader) {
     compiler.withTemplateLoader(settings.templateLoader);
+  }
+  if (settings.scriptResolver) {
+    compiler.withScriptResolver(settings.scriptResolver);
   }
 
   // Compile
