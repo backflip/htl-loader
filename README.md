@@ -53,7 +53,8 @@ document.body.insertAdjacentHTML("beforeend", html);
 | [`includeRuntime`](./test/build.test.js#L96-L107)         | `true`  | Include runtime and evaluate template during compilation. |
 | [`runtimeVars`](./test/build.test.js#L109-L124)           | `[]`    | Add (global) runtime variable names during compilation.   |
 | [`moduleImportGenerator`](./test/build.test.js#L126-L145) | `null`  | Use custom module import generator.                       |
-| [`templateLodaer`](./test/build.test.js#L77-L94)          | `null`  | Use custom template loader.                               |
+| [`scriptResolver`](./test/build.test.js#L81-L98)          | `null`  | Use custom script resolver.                               |
+| [`templateLoader`](./test/build.test.js#L100-L119)        | `null`  | Use custom template loader.                               |
 
 ### Example
 
