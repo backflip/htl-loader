@@ -1,3 +1,3 @@
-import html from './template.htl?{"data":{"title":"Hello"}}';
+import html from "./template.htl";
 
 document.body.insertAdjacentHTML("beforeend", html);

@@ -25,16 +25,29 @@ See [./example](./example).
 }
 ```
 
-2. Create examplary `template.htl`:
+2. Create exemplary `template.htl`:
 
 ```html
-<h1>${htl.title}</h1>
+<h1 data-sly-use.page="./data">${page.title}</h1>
 ```
 
-3. Import and run compiled template in your JavaScript:
+3. Create exemplary `data.js` in same directory:
 
 ```js
-import html from './template.htl?{"data":{"title":"Hello"}}';
+module.exports = class Data {
+  use() {
+    return {
+      title: "Hello"
+    };
+  }
+};
+```
+
+4. Import and run compiled template in your JavaScript:
+
+```js
+import html from "./template.htl";
+// <h1>Hello</h1>
 
 document.body.insertAdjacentHTML("beforeend", html);
 ```

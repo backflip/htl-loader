@@ -1,1 +1,1 @@
-<h1>${htl.title}</h1>
+<h1 data-sly-use.page="./data">${page.title}</h1>
