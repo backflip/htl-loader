@@ -1,3 +1,3 @@
-import html from './template.htl?{"data":{"title":"Hello, world."}}';
+import html from './template.htl?data={"title":"Hello, world."}';
 
 export default html;

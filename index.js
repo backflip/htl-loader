@@ -1,10 +1,25 @@
 const fs = require("fs");
 const path = require("path");
-const { getOptions, parseQuery } = require("loader-utils");
 const { Compiler } = require("@adobe/htlengine");
 
-module.exports = async function(source) {
-  const options = getOptions(this);
+// Basic loader query parser allowing for `?data=JSON_OBJECT`
+function parseQuery(resourceQuery) {
+  const result = {};
+  const params = new URLSearchParams(resourceQuery.slice(1));
+
+  for (const [key, value] of params.entries()) {
+    if (key === "data") {
+      result[key] = JSON.parse(value);
+    } else {
+      result[key] = value;
+    }
+  }
+
+  return result;
+}
+
+module.exports = async function (source) {
+  const options = this.getOptions();
   const query = this.resourceQuery ? parseQuery(this.resourceQuery) : null;
   const settings = Object.assign(
     {
