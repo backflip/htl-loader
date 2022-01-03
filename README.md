@@ -59,7 +59,6 @@ document.body.insertAdjacentHTML("beforeend", html);
 | Name                                                      | Default | Description                                               |
 | :-------------------------------------------------------- | :------ | :-------------------------------------------------------- |
 | [`globalName`](./test/build.test.js#L77-L86)              | `htl`   | Name of the runtime global variable.                      |
-| `useDir`                                                  | `null`  | Root directory for use-classed passed to the runtime.     |
 | `transformSource`                                         | `null`  | Function invoked before compiling the htl.                |
 | `transformCompiled`                                       | `null`  | Function invoked after compiling the htl.                 |
 | [`data`](./test/build.test.js#L61-L69)                    | `{}`    | Runtime global.                                           |

@@ -25,7 +25,6 @@ module.exports = async function (source) {
     {
       globalName: "htl",
       model: "default",
-      useDir: null,
       transformSource: null,
       transformCompiled: null,
       includeRuntime: true,
@@ -67,20 +66,6 @@ module.exports = async function (source) {
 
   // Compile
   let compiledCode = await compiler.compileToString(input, this.context);
-
-  // Specify location for data files from `use` directives
-  if (settings.useDir) {
-    // Remove files from cache
-    fs.readdirSync(settings.useDir).forEach(file => {
-      const filePath = path.join(settings.useDir, file);
-      delete require.cache[filePath];
-    });
-
-    compiledCode = compiledCode.replace(
-      /(runtime\.setGlobal\(resource\);)/,
-      `$1\nruntime.withUseDirectory('${settings.useDir}');`
-    );
-  }
 
   // Optionally transform compiled, e.g. to customize runtime
   if (settings.transformCompiled) {
