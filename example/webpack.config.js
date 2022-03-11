@@ -16,5 +16,14 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname)
+    },
+    port: 9000,
+    devMiddleware: {
+      publicPath: "/dist"
+    }
   }
 };
