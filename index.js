@@ -65,7 +65,10 @@ module.exports = async function (source) {
   }
 
   // Compile
-  let compiledCode = await compiler.compileToString(input, this.context);
+  let compiledCode = await compiler.compileToString(
+    input,
+    path.relative(__dirname, this.context)
+  );
 
   // Optionally transform compiled, e.g. to customize runtime
   if (settings.transformCompiled) {
