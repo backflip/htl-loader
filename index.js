@@ -64,11 +64,13 @@ module.exports = async function (source) {
     compiler.withScriptResolver(settings.scriptResolver);
   }
 
+  // Set proper context for path resolution. When including the runtime, we run `eval` and require paths to be relative to this file
+  const compilationContext = settings.includeRuntime
+    ? path.relative(__dirname, this.context)
+    : this.context;
+
   // Compile
-  let compiledCode = await compiler.compileToString(
-    input,
-    path.relative(__dirname, this.context)
-  );
+  let compiledCode = await compiler.compileToString(input, compilationContext);
 
   // Optionally transform compiled, e.g. to customize runtime
   if (settings.transformCompiled) {
